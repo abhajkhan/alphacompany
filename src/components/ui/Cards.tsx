@@ -167,49 +167,53 @@ export function CaseStudyCard({ caseStudy, featured = false, className }: CaseSt
       variants={cardHover}
       initial="rest"
       whileHover="hover"
-      className={cn(cardBase, "gap-5 group", featured && "lg:col-span-2", className)}
+      className={cn(cardBase, "h-full gap-5 group flex flex-col justify-between", featured && "lg:col-span-2", className)}
     >
-      {caseStudy.imageUrl && (
-        <div className="relative overflow-hidden rounded-[--radius-md] bg-background-primary h-52">
-          <Image
-            src={caseStudy.imageUrl}
-            alt={`${caseStudy.client} case study`}
-            fill
-            className="object-cover scale-100 group-hover:scale-[1.04] transition-transform duration-500"
-          />
+      <div className="flex flex-col gap-4 flex-1">
+        {caseStudy.imageUrl && (
+          <div className="relative overflow-hidden rounded-[--radius-md] bg-background-primary h-52 shrink-0">
+            <Image
+              src={caseStudy.imageUrl}
+              alt={`${caseStudy.client} case study`}
+              fill
+              className="object-cover scale-100 group-hover:scale-[1.04] transition-transform duration-500"
+            />
+          </div>
+        )}
+
+        <div className="flex items-center gap-2">
+          <Badge variant="neutral" size="sm">{caseStudy.industry}</Badge>
         </div>
-      )}
 
-      <div className="flex items-center gap-2">
-        <Badge variant="neutral" size="sm">{caseStudy.industry}</Badge>
-      </div>
+        <div>
+          <h3 className={cn("font-sans font-semibold text-text-primary mb-2", featured ? "text-2xl" : "text-lg")}>
+            {caseStudy.title}
+          </h3>
+          <p className="text-sm text-text-secondary font-sans leading-relaxed line-clamp-3">
+            {caseStudy.challenge}
+          </p>
+        </div>
 
-      <div>
-        <h3 className={cn("font-sans font-semibold text-text-primary mb-2", featured ? "text-2xl" : "text-lg")}>
-          {caseStudy.title}
-        </h3>
-        <p className="text-sm text-text-secondary font-sans leading-relaxed line-clamp-2">
-          {caseStudy.challenge}
+        <p className="text-sm text-text-muted font-sans italic line-clamp-2">
+          ↳ {caseStudy.result}
         </p>
+
+        <div className="flex flex-wrap gap-1.5 mt-auto">
+          {caseStudy.technologies.slice(0, 4).map((tech) => (
+            <Badge key={tech} variant="tech" size="sm">{tech}</Badge>
+          ))}
+        </div>
       </div>
 
-      <p className="text-sm text-text-muted font-sans italic line-clamp-1">
-        ↳ {caseStudy.result}
-      </p>
-
-      <div className="flex flex-wrap gap-1.5">
-        {caseStudy.technologies.slice(0, 4).map((tech) => (
-          <Badge key={tech} variant="tech" size="sm">{tech}</Badge>
-        ))}
+      <div className="pt-4 border-t border-divider-neutral shrink-0">
+        <Link
+          href={caseStudy.href}
+          className="inline-flex items-center gap-1.5 text-sm font-medium text-accent-blue hover:text-accent-blue-hover transition-colors font-sans focus:outline-none"
+          aria-label={`Read ${caseStudy.title} case study`}
+        >
+          View Case Study <ArrowRight size={14} aria-hidden="true" />
+        </Link>
       </div>
-
-      <Link
-        href={caseStudy.href}
-        className="inline-flex items-center gap-1.5 text-sm font-medium text-accent-blue hover:text-accent-blue-hover transition-colors font-sans focus:outline-none"
-        aria-label={`Read ${caseStudy.title} case study`}
-      >
-        View Case Study <ArrowRight size={14} aria-hidden="true" />
-      </Link>
     </motion.article>
   );
 }

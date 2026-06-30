@@ -9,6 +9,12 @@ import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
 import { Container } from "@/components/layout/Container";
 
+import dynamic from "next/dynamic";
+
+const Hero3D = dynamic(() => import("./Hero3D"), {
+  ssr: false,
+});
+
 // ---------------------------------------------------------------------------
 // Shared animation
 // ---------------------------------------------------------------------------
@@ -61,8 +67,8 @@ export function HeroDefault({
         className,
       )}
     >
-      {/* Architectural grid background */}
-      <HeroGrid />
+      {/* Dynamic 3D sculpture + background grid */}
+      <Hero3D />
 
       {/* Radial accent glow */}
       <div
@@ -76,7 +82,7 @@ export function HeroDefault({
 
       <Container className="relative z-10 pt-32 pb-24">
         <motion.div
-          className="max-w-3xl flex flex-col gap-8"
+          className="flex flex-col gap-8"
           variants={stagger}
           initial="hidden"
           animate="visible"
@@ -100,7 +106,7 @@ export function HeroDefault({
           {/* Supporting text */}
           <motion.p
             variants={fadeUp}
-            className="text-lg md:text-xl text-text-secondary font-sans leading-relaxed max-w-xl"
+            className="text-lg md:text-xl text-text-secondary font-sans leading-relaxed"
           >
             {supporting}
           </motion.p>

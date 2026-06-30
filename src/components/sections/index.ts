@@ -40,3 +40,6 @@ export type {
   HeroProductProps,
   HeroArticleProps,
 } from "./Heroes";
+
+export { TestimonialSlider } from "./TestimonialSlider";
+

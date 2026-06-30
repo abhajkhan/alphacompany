@@ -54,7 +54,7 @@ export function SectionHeader({
   const commonClass = cn(
     "flex flex-col",
     align === "center" ? "items-center text-center" : "items-start text-left",
-    "gap-4 max-w-3xl",
+    "gap-4",
     align === "center" && "mx-auto",
     className,
   );
@@ -72,7 +72,7 @@ export function SectionHeader({
           {heading}
         </h2>
         {subheading && (
-          <p className="text-base md:text-lg text-text-secondary font-sans leading-relaxed max-w-2xl">
+          <p className="text-base md:text-lg text-text-secondary font-sans leading-relaxed">
             {subheading}
           </p>
         )}
@@ -108,7 +108,7 @@ export function SectionHeader({
       {subheading && (
         <motion.p
           variants={fadeUpVariants}
-          className="text-base md:text-lg text-text-secondary font-sans leading-relaxed max-w-2xl"
+          className="text-base md:text-lg text-text-secondary font-sans leading-relaxed"
         >
           {subheading}
         </motion.p>

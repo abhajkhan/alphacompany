@@ -77,13 +77,13 @@ export function CTABanner({
         >
           <h2
             id="cta-heading"
-            className="font-sans font-bold text-text-primary leading-[110%] text-4xl sm:text-5xl lg:text-6xl max-w-3xl"
+            className="font-sans font-bold text-text-primary leading-[110%] text-4xl sm:text-5xl lg:text-6xl"
           >
             {heading}
           </h2>
 
           {subheading && (
-            <p className="text-base sm:text-lg text-text-secondary font-sans max-w-xl">
+            <p className="text-base sm:text-lg text-text-secondary font-sans">
               {subheading}
             </p>
           )}

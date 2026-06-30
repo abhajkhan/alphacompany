@@ -29,7 +29,7 @@ const stepVariants: Variants = {
 
 export function Timeline({ steps, className }: TimelineProps) {
   return (
-    <div className={cn(className)}>
+    <div className={cn("w-full", className)}>
       {/* Desktop: vertical timeline */}
       <div className="hidden md:block">
         <VerticalTimeline steps={steps} />
@@ -77,11 +77,11 @@ function VerticalTimeline({ steps }: { steps: ProcessStep[] }) {
             </div>
 
             {/* Content */}
-            <div className={cn("pb-12", isLast && "pb-0")}>
+            <div className={cn("pb-12 flex-1 min-w-0", isLast && "pb-0")}>
               <h3 className="font-sans font-semibold text-xl text-text-primary mb-2">
                 {step.title}
               </h3>
-              <p className="text-base text-text-secondary font-sans leading-relaxed max-w-lg">
+              <p className="text-base text-text-secondary font-sans leading-relaxed">
                 {step.description}
               </p>
             </div>
