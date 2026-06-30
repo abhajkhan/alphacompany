@@ -1099,6 +1099,151 @@ A page is considered complete only if it:
 * Has no inconsistent spacing, colors, or typography.
 * Feels unmistakably like Alpha Company.
 
+# 27. Navigation Behavior Specification
+
+## Default State (Top of Page)
+
+**Trigger**
+
+* Scroll position: **0-64px**
+
+**Appearance**
+
+* Background: `transparent`
+* Backdrop blur: `0px`
+* Border: `none`
+* Shadow: `none`
+* Logo: Full size (100%)
+* Navigation links: White (`#FFFFFF`)
+* CTA button: Primary style from the Design System
+
+The navigation should visually blend into the hero section.
+
+---
+
+## Scrolled State
+
+**Trigger**
+
+Transition begins when the user scrolls **64px** from the top of the document.
+
+At **80px**, the transition should be fully complete.
+
+This creates a smooth interpolation rather than an abrupt change.
+
+---
+
+## Scrolled Appearance
+
+Background
+
+```css
+rgba(5, 5, 5, 0.82)
+```
+
+Backdrop Blur
+
+```text
+16px
+```
+
+Border Bottom
+
+```css
+1px solid rgba(255,255,255,0.06)
+```
+
+Shadow
+
+Very subtle
+
+```css
+0 8px 24px rgba(0,0,0,0.18)
+```
+
+Logo
+
+Scale
+
+```text
+100% → 94%
+```
+
+Navigation Links
+
+Remain white
+
+Hover uses the accent blue defined in the Design System.
+
+---
+
+## Animation
+
+Duration
+
+```text
+300ms
+```
+
+Easing
+
+```text
+easeOutQuart
+```
+
+Animate only:
+
+* background-color
+* backdrop-filter
+* border-color
+* box-shadow
+* transform (logo scale)
+
+Do **not** animate:
+
+* width
+* height
+* top
+* left
+
+Those properties trigger layout recalculations and can make scrolling feel less smooth.
+
+---
+
+## Mobile Behavior
+
+The same transition rules apply.
+
+When the mobile menu opens:
+
+* Background becomes fully opaque (`#050505`)
+* Blur increases to **20px**
+* Page scrolling is locked
+* Overlay fades in over **250ms**
+
+---
+
+## Accessibility
+
+Respect `prefers-reduced-motion`.
+
+When reduced motion is enabled:
+
+* Skip interpolation.
+* Switch directly between transparent and solid states.
+* Keep the timing at **0ms** or near-instant.
+
+---
+
+## Implementation Notes
+
+Recommended implementation:
+
+* Listen to `window.scrollY`.
+* Treat `64px` as the threshold.
+* Interpolate values until `80px`.
+* Throttle updates with `requestAnimationFrame` or use a motion library to avoid unnecessary re-renders.
+
 ---
 
 # Design System Philosophy
